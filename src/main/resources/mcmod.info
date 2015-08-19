@@ -1,0 +1,19 @@
+[
+{
+  "modid": "wailaevents",
+  "name": "Waila Events",
+  "description": "Adds several new events to the Waila mod.",
+  "version": "1.0.0",
+  "credits": "Maintained by Darkhax.",
+  "logoFile": "",
+  "mcversion": "1.7.10",
+  "url": "http://www.darkhax.net",
+  "updateUrl": "",
+  "authors": ["Darkhax"],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": [
+     "mod_MinecraftForge"
+  ]
+}
+]
