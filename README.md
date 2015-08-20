@@ -12,7 +12,7 @@ It is very simple to build versions of Waila Events. Waila Events makes use of t
 
 Dev Environment
 ===============
-This project is a Core Mod, and will only function if it is set up as one. A dummy jar for this mod is not currently available. To use this mod, add -Dfml.coreMods.load=net.darkhax.wailaevents.asm.WailaEventsLoadingPlugin to your VM arguments. A dev jar for this mod should also be available on it's download page.
+This project is a Core Mod, and will only function if it is set up as one. The easiest way to use this mod is to download the dev jar from CurseForge and place it in your mods folder. All versions will have an attatched dev jar file. Alternatively, if you are using the raw source for this mod, you will need to create a dummy jar for this mod, or add the following argument to your VM arguments. -Dfml.coreMods.load=net.darkhax.wailaevents.asm.WailaEventsLoadingPlugin 
 
 Events
 ======
