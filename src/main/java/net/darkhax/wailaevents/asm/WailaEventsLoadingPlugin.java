@@ -10,19 +10,19 @@ public class WailaEventsLoadingPlugin implements IFMLLoadingPlugin {
     
     @Override
     public String[] getASMTransformerClass () {
-    
+        
         return new String[] { OverlayRendererTransformer.class.getName() };
     }
     
     @Override
     public String getModContainerClass () {
-    
+        
         return null;
     }
     
     @Override
     public String getSetupClass () {
-    
+        
         return null;
     }
     
@@ -33,7 +33,7 @@ public class WailaEventsLoadingPlugin implements IFMLLoadingPlugin {
     
     @Override
     public String getAccessTransformerClass () {
-    
+        
         return null;
     }
 }

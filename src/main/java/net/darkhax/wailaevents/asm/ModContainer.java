@@ -11,7 +11,7 @@ import cpw.mods.fml.common.ModMetadata;
 public class ModContainer extends DummyModContainer {
     
     public ModContainer() {
-    
+        
         super(new ModMetadata());
         
         ModMetadata md = getMetadata();
@@ -26,7 +26,7 @@ public class ModContainer extends DummyModContainer {
     
     @Override
     public boolean registerBus (EventBus bus, LoadController controller) {
-    
+        
         return true;
     }
 }

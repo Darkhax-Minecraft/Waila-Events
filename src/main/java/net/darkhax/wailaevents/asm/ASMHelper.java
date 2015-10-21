@@ -16,7 +16,7 @@ public final class ASMHelper {
      * @return byte[]: A byte array representation of the ClassNode.
      */
     public static byte[] createByteArrayFromClass (ClassNode classNode, int flags) {
-    
+        
         ClassWriter classWriter = new ClassWriter(flags);
         classNode.accept(classWriter);
         return classWriter.toByteArray();
@@ -30,7 +30,7 @@ public final class ASMHelper {
      * @return ClassNode: A ClassNode representation of the class, built from the byte array.
      */
     public static ClassNode createClassFromByteArray (byte[] classBytes) {
-    
+        
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(classBytes);
         classReader.accept(classNode, ClassReader.EXPAND_FRAMES);
@@ -46,11 +46,11 @@ public final class ASMHelper {
      * @return boolean: True if the method is found, false if it is not.
      */
     public static boolean hasClassMethodName (ClassNode classNode, String methodName) {
-    
+        
         for (MethodNode method : classNode.methods)
             if (methodName.equals(method.name))
                 return true;
-        
+                
         return false;
     }
     
@@ -66,11 +66,11 @@ public final class ASMHelper {
      *         not be found, a MethodNotFoundException will be thrown and the game will stop.
      */
     public static MethodNode getMethodFromClass (ClassNode classNode, String methodName, String descriptor) {
-    
+        
         for (MethodNode mnode : classNode.methods)
             if (methodName.equals(mnode.name) && descriptor.equals(mnode.desc))
                 return mnode;
-        
+                
         throw new MethodNotFoundException(methodName, descriptor);
     }
     
@@ -84,7 +84,7 @@ public final class ASMHelper {
          * @param methodDesc: The descriptor for the method being looked for.
          */
         public MethodNotFoundException(String methodName, String methodDesc) {
-        
+            
             super("Attempt to find a method has failed. Method: " + methodName + " Descriptor: " + methodDesc);
         }
     }

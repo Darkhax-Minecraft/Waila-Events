@@ -1,9 +1,9 @@
 package net.darkhax.wailaevents.util;
 
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import net.minecraft.client.Minecraft;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import net.minecraft.client.Minecraft;
 
 public class Utilities {
     
@@ -16,7 +16,7 @@ public class Utilities {
      */
     @SideOnly(Side.CLIENT)
     public static boolean isSafeForTooltip () {
-    
+        
         Minecraft mc = Minecraft.getMinecraft();
         return !((mc.currentScreen != null) || (mc.theWorld == null) || (!Minecraft.isGuiEnabled()) || (mc.gameSettings.keyBindPlayerList.getIsKeyPressed()) || (!ConfigHandler.instance().getConfig("general", mcp.mobius.waila.utils.Constants.CFG_WAILA_SHOW, true)));
     }

@@ -1,38 +1,22 @@
 package net.darkhax.wailaevents.asm;
 
-import static org.objectweb.asm.Opcodes.DUP;
-import static org.objectweb.asm.Opcodes.GETSTATIC;
-import static org.objectweb.asm.Opcodes.IFEQ;
-import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
-import static org.objectweb.asm.Opcodes.INVOKESTATIC;
-import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
-import static org.objectweb.asm.Opcodes.NEW;
-import static org.objectweb.asm.Opcodes.POP;
-import static org.objectweb.asm.Opcodes.RETURN;
-import net.darkhax.wailaevents.util.Constants;
-import net.minecraft.launchwrapper.IClassTransformer;
+import static org.objectweb.asm.Opcodes.*;
 
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.FieldInsnNode;
-import org.objectweb.asm.tree.InsnList;
-import org.objectweb.asm.tree.InsnNode;
-import org.objectweb.asm.tree.JumpInsnNode;
-import org.objectweb.asm.tree.LabelNode;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.TypeInsnNode;
+import org.objectweb.asm.tree.*;
+
+import net.darkhax.wailaevents.util.Constants;
+import net.minecraft.launchwrapper.IClassTransformer;
 
 public class OverlayRendererTransformer implements IClassTransformer {
     
     @Override
     public byte[] transform (String name, String transformedName, byte[] classBytes) {
-    
+        
         if (transformedName.equals("mcp.mobius.waila.overlay.OverlayRenderer"))
             return transformOverlayRenderer(classBytes);
-        
+            
         return classBytes;
     }
     
@@ -45,7 +29,7 @@ public class OverlayRendererTransformer implements IClassTransformer {
      * @return byte[]: The modified version of the OverlayRenderer as bytes.
      */
     private byte[] transformOverlayRenderer (byte[] bytes) {
-    
+        
         Constants.LOG.info("OverlayRenderer found. Preparing to inject new events, this will only hurt a little bit.");
         ClassNode classNode = ASMHelper.createClassFromByteArray(bytes);
         MethodNode methodNode = ASMHelper.getMethodFromClass(classNode, "renderOverlay", "()V");
@@ -57,17 +41,17 @@ public class OverlayRendererTransformer implements IClassTransformer {
             
             if (startNode == null)
                 startNode = insn;
-            
+                
             if (insn.getOpcode() == Opcodes.RETURN)
                 endNode = insn.getPrevious();
         }
         
         if (startNode != null)
             methodNode.instructions.insert(startNode, getPreInstructions());
-        
+            
         if (endNode != null)
             methodNode.instructions.insertBefore(endNode, getPostInstructions());
-        
+            
         Constants.LOG.info("Transformation complete, new events have been injected.");
         return ASMHelper.createByteArrayFromClass(classNode, ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
     }
@@ -82,7 +66,7 @@ public class OverlayRendererTransformer implements IClassTransformer {
      *         renderOverlay method.
      */
     private static InsnList getPreInstructions () {
-    
+        
         Constants.LOG.info("Injecting WailaRenderEvent.Pre");
         LabelNode start = new LabelNode();
         LabelNode end = new LabelNode();
@@ -111,7 +95,7 @@ public class OverlayRendererTransformer implements IClassTransformer {
      *         rederOverlay method.
      */
     private static InsnList getPostInstructions () {
-    
+        
         Constants.LOG.info("Injecting WailaRenderEvent.Post");
         
         LabelNode start = new LabelNode();
