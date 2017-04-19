@@ -2,6 +2,9 @@ Waila Events
 =====
 Waila Events is a core mod that adds several new events into the Waila mod. These events can be accessed in the same way as any other event on the MincecraftForge.EVENT_BUS
 
+[![Nodecraft](https://i.imgur.com/upbNEgp.png)](https://nodecraft.com/r/darkhax)
+This project is sponsored by Nodecraft. Use code Darkhax for 30% off your first month of service!
+
 Required Mods
 =============
 [WAILA](https://bitbucket.org/ProfMobius/waila) | Currently coded with 1.5.10
